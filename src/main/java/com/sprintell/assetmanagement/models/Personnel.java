@@ -1,25 +1,23 @@
 package com.sprintell.assetmanagement.models;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class Personnel {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String personnelNumber;
     private String firstname;
     private String lastname;
     private String phone;
     private String email;
     private String title;
-
-    @OneToOne
-    private PersonnelGroup personnelGroup;
-
     private String status;
+
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="personnelGroupId")
+    private PersonnelGroup personnelGroup;
 
     @OneToMany
     private List<PersonnelHistory> personnelHistories;

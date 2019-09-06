@@ -1,14 +1,14 @@
 package com.sprintell.assetmanagement.models;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class Vendor {
     @Id
-    private String vendorNumber;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String vendorId;
+
     private String vendorName;
     private String email;
     private String phone;
