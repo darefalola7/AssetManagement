@@ -9,8 +9,34 @@ import javax.persistence.Id;
 public class PersonnelGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int personnelGroupId;
+    private Long personnelGroupId;
     private String description;
     private String name;
 
+    public PersonnelGroup() {
+    }
+
+    public Long getPersonnelGroupId() {
+        return personnelGroupId;
+    }
+
+    public void setPersonnelGroupId(Long personnelGroupId) {
+        this.personnelGroupId = personnelGroupId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

@@ -2,14 +2,13 @@ package com.sprintell.assetmanagement.models;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
-public class VendorAsset {
+public class PersonnelAssetCheckedOut {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long assetCheckedOutId;
 
     @OneToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH,CascadeType.REFRESH})
@@ -17,18 +16,17 @@ public class VendorAsset {
     private Asset asset;
 
     private String description;
-    private LocalDate dateCreated;
-    private LocalDate dateUpdated;
+    private LocalDate dueDate;
 
-    public VendorAsset() {
+    public PersonnelAssetCheckedOut() {
     }
 
-    public String getId() {
-        return id;
+    public Long getAssetCheckedOutId() {
+        return assetCheckedOutId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setAssetCheckedOutId(Long assetCheckedOutId) {
+        this.assetCheckedOutId = assetCheckedOutId;
     }
 
     public Asset getAsset() {
@@ -47,19 +45,11 @@ public class VendorAsset {
         this.description = description;
     }
 
-    public LocalDate getDateCreated() {
-        return dateCreated;
+    public LocalDate getDueDate() {
+        return dueDate;
     }
 
-    public void setDateCreated(LocalDate dateCreated) {
-        this.dateCreated = dateCreated;
-    }
-
-    public LocalDate getDateUpdated() {
-        return dateUpdated;
-    }
-
-    public void setDateUpdated(LocalDate dateUpdated) {
-        this.dateUpdated = dateUpdated;
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
     }
 }
