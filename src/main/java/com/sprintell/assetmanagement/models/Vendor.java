@@ -22,8 +22,11 @@ public class Vendor {
     private String country;
 
     @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name="vendorId")
     private List<VendorAsset> vendorAssets;
+
     @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name="vendorId")
     private List<VendorNote> vendorNotes;
 
     public Vendor() {

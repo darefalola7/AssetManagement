@@ -23,8 +23,11 @@ public class Personnel {
     private PersonnelGroup personnelGroup;
 
     @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name="personnelId")
     private List<PersonnelHistory> personnelHistories;
+
     @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name="personnelId")
     private List<PersonnelAssetCheckedOut> personnelAssetCheckedOutList;
 
     public Personnel() {

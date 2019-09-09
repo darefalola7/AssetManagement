@@ -37,10 +37,16 @@ public class Asset {
 
     //child classes
     @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name="assetId")
     private List<AssetHistory> assetHistories;
+
     @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name="assetId")
     private List<AssetNote> assetNotes;
+
     @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name="assetId")
+
     private List<AssetService> assetServices;
 
     public Asset() {
