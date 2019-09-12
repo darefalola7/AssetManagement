@@ -6,8 +6,8 @@ import javax.persistence.Embeddable;
 public class AssetGeneral {
 
     private Long serialNumber;
-    private String status;
-    private String condition;
+    private String assetstatus;
+    private String assetcondition;
     private String notes;
 
     public AssetGeneral() {
@@ -15,8 +15,8 @@ public class AssetGeneral {
 
     public AssetGeneral(Long serialNumber, String status, String condition, String notes) {
         this.serialNumber = serialNumber;
-        this.status = status;
-        this.condition = condition;
+        this.assetstatus = status;
+        this.assetcondition = condition;
         this.notes = notes;
     }
 
@@ -28,20 +28,20 @@ public class AssetGeneral {
         this.serialNumber = serialNumber;
     }
 
-    public String getStatus() {
-        return status;
+    public String getAssetStatus() {
+        return assetstatus;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setAssetStatus(String status) {
+        this.assetstatus = status;
     }
 
-    public String getCondition() {
-        return condition;
+    public String getAssetCondition() {
+        return assetcondition;
     }
 
-    public void setCondition(String condition) {
-        this.condition = condition;
+    public void setAssetCondition(String condition) {
+        this.assetcondition = condition;
     }
 
     public String getNotes() {

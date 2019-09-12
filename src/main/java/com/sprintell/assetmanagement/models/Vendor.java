@@ -7,8 +7,9 @@ import java.util.List;
 public class Vendor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String vendorId;
+    private Long vendorId;
 
+    private String vendorNumber;
     private String vendorName;
     private String email;
     private String phone;
@@ -32,12 +33,20 @@ public class Vendor {
     public Vendor() {
     }
 
-    public String getVendorId() {
+    public Long getVendorId() {
         return vendorId;
     }
 
-    public void setVendorId(String vendorId) {
+    public void setVendorId(Long vendorId) {
         this.vendorId = vendorId;
+    }
+
+    public String getVendorNumber() {
+        return vendorNumber;
+    }
+
+    public void setVendorNumber(String vendorNumber) {
+        this.vendorNumber = vendorNumber;
     }
 
     public String getVendorName() {

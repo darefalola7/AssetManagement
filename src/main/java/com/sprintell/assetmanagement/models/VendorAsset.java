@@ -8,25 +8,25 @@ public class VendorAsset {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
 
     @OneToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH,CascadeType.REFRESH})
     @JoinColumn(name="assetId")
     private Asset asset;
 
-    private String description;
+    private String vendorDescription;
     private LocalDate dateCreated;
     private LocalDate dateUpdated;
 
     public VendorAsset() {
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -38,12 +38,12 @@ public class VendorAsset {
         this.asset = asset;
     }
 
-    public String getDescription() {
-        return description;
+    public String getVendorDescription() {
+        return vendorDescription;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setVendorDescription(String description) {
+        this.vendorDescription = description;
     }
 
     public LocalDate getDateCreated() {

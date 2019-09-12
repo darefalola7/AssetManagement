@@ -1,7 +1,6 @@
 package com.sprintell.assetmanagement.models;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -13,7 +12,7 @@ public class Asset {
     private Long assetId;
 
     private String assetNumber;
-    private String description;
+    private String assetDescription;
 
     @OneToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH,CascadeType.REFRESH})
@@ -68,12 +67,12 @@ public class Asset {
         this.assetNumber = assetNumber;
     }
 
-    public String getDescription() {
-        return description;
+    public String getAssetDescription() {
+        return assetDescription;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setAssetDescription(String description) {
+        this.assetDescription = description;
     }
 
     public AssetCategory getAssetCategory() {
