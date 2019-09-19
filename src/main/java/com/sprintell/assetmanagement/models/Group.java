@@ -1,27 +1,36 @@
 package com.sprintell.assetmanagement.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
-public class PersonnelGroup {
+@Table(name="groups")
+public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long personnelGroupId;
+    private Long groupId;
+
     private String description;
     private String name;
 
-    public PersonnelGroup() {
+    @ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.DETACH,CascadeType.REFRESH})
+    @JoinTable(
+            name="personnel_group",
+            joinColumns=@JoinColumn(name="groupId"),
+            inverseJoinColumns=@JoinColumn(name="personnelId")
+    )
+    private List<Personnel> personnels;
+
+    public Group() {
     }
 
-    public Long getPersonnelGroupId() {
-        return personnelGroupId;
+    public Long getGroupId() {
+        return groupId;
     }
 
-    public void setPersonnelGroupId(Long personnelGroupId) {
-        this.personnelGroupId = personnelGroupId;
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
     }
 
     public String getDescription() {

@@ -25,9 +25,9 @@ public class Vendor {
     private String postalCode;
     private String country;
 
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+    @OneToMany(mappedBy = "vendor", cascade = {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH, CascadeType.REFRESH})
-    private Asset asset;
+    private List<Asset> assets;
 
     public Vendor() {
     }
@@ -152,11 +152,11 @@ public class Vendor {
         this.country = country;
     }
 
-    public Asset getAsset() {
-        return asset;
+    public List<Asset> getAssets() {
+        return assets;
     }
 
-    public void setAsset(Asset asset) {
-        this.asset = asset;
+    public void setAssets(List<Asset> assets) {
+        this.assets = assets;
     }
 }

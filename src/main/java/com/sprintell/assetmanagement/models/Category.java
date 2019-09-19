@@ -1,20 +1,27 @@
 package com.sprintell.assetmanagement.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
-public class AssetCategory {
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long categoryId;
 
+    @ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.DETACH,CascadeType.REFRESH})
+    @JoinTable(
+            name="asset_category",
+            joinColumns=@JoinColumn(name="categoryId"),
+            inverseJoinColumns=@JoinColumn(name="assetId")
+    )
+    private List<Asset> assets;
+
     private String name;
     private String description;
 
-    public AssetCategory() {
+    public Category() {
     }
 
     public Long getCategoryId() {

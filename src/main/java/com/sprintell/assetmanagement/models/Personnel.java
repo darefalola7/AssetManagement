@@ -20,14 +20,22 @@ public class Personnel {
     private LocalDate regTime;
     private String address;
 
-    @OneToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+    @ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH,CascadeType.REFRESH})
-    @JoinColumn(name="personnelGroupId")
-    private PersonnelGroup personnelGroup;
+    @JoinTable(
+            name="personnel_group",
+            joinColumns=@JoinColumn(name="personnelId"),
+            inverseJoinColumns=@JoinColumn(name="groupId")
+    )
+    private List<Group> groups;
 
-    @OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name="personnelId")
+    @OneToMany(mappedBy = "personnel", cascade=CascadeType.ALL)
     private List<PersonnelHistory> personnelHistories;
+
+    @OneToMany(mappedBy="personnel",
+            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH,CascadeType.REFRESH})
+    private List<AssetCheckedOut> checkedOuts;
 
     public Personnel() {
     }
@@ -96,12 +104,36 @@ public class Personnel {
         this.status = status;
     }
 
-    public PersonnelGroup getPersonnelGroup() {
-        return personnelGroup;
+    public LocalDate getRegTime() {
+        return regTime;
     }
 
-    public void setPersonnelGroup(PersonnelGroup personnelGroup) {
-        this.personnelGroup = personnelGroup;
+    public void setRegTime(LocalDate regTime) {
+        this.regTime = regTime;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public List<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<Group> groups) {
+        this.groups = groups;
+    }
+
+    public List<AssetCheckedOut> getCheckedOuts() {
+        return checkedOuts;
+    }
+
+    public void setCheckedOuts(List<AssetCheckedOut> checkedOuts) {
+        this.checkedOuts = checkedOuts;
     }
 
     public List<PersonnelHistory> getPersonnelHistories() {

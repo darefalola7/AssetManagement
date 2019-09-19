@@ -21,14 +21,14 @@ public class AssetCheckedOut {
     private String status;
     private String description;
 
-    @OneToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+    @ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH,CascadeType.REFRESH})
     @JoinColumn(name="assetId")
     private Asset asset;
 
-    @OneToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+    @ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH,CascadeType.REFRESH})
-    @JoinColumn(name="personnelNumber")
+    @JoinColumn(name="personnelId")
     private Personnel personnel;
 
 

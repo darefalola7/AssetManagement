@@ -14,12 +14,14 @@ public class Asset {
     private String assetNumber;
     private String assetDescription;
 
-    @OneToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE,
+    @ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH,CascadeType.REFRESH})
-    @JoinColumn(name="categoryId")
-    private AssetCategory assetCategory;
-    private String manufacturer;
-    private String model;
+    @JoinTable(
+            name="asset_category",
+            joinColumns=@JoinColumn(name="assetId"),
+            inverseJoinColumns=@JoinColumn(name="categoryId")
+    )
+    private List<Category> categories;
 
     //General
     @Embedded
@@ -29,7 +31,7 @@ public class Asset {
     @Embedded
     AssetFinance assetFinance;
 
-    @OneToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE,
+    @ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH,CascadeType.REFRESH})
     @JoinColumn(name="vendorId")
     private Vendor vendor;
@@ -48,37 +50,44 @@ public class Asset {
     @OneToMany(mappedBy="asset",
             cascade= {CascadeType.PERSIST, CascadeType.MERGE,
                     CascadeType.DETACH,CascadeType.REFRESH})
-    private List<Location> locations;
-
-    @OneToMany(mappedBy="asset",
-            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH,CascadeType.REFRESH})
-    private List<Department> departments;
-
-    @OneToMany(mappedBy="asset",
-            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH,CascadeType.REFRESH})
-    private List<Manufacturer> manufacturers;
-
-    @OneToMany(mappedBy="asset",
-            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH,CascadeType.REFRESH})
-    private List<Status> statuses;
-
-    @OneToMany(mappedBy="asset",
-            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH,CascadeType.REFRESH})
-    private List<Model> models;
-
-    @OneToMany(mappedBy="asset",
-            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH,CascadeType.REFRESH})
-    private List<Brand> brands;
-
-    @OneToMany(mappedBy="asset",
-            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH,CascadeType.REFRESH})
     private List<Maintenance> maintenances;
+
+    @OneToMany(mappedBy="asset",
+            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH,CascadeType.REFRESH})
+    private List<AssetCheckedOut> checkedOuts;
+
+
+    //parent classes
+    @ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.DETACH,CascadeType.REFRESH})
+    @JoinColumn(name="locationId")
+    private Location location;
+
+    @ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH,CascadeType.REFRESH})
+    @JoinColumn(name="departmentId")
+    private Department department;
+
+    @ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH,CascadeType.REFRESH})
+    @JoinColumn(name="manufacturerId")
+    private Manufacturer manufacturer;
+
+    @ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.DETACH,CascadeType.REFRESH})
+    @JoinColumn(name="statusId")
+    private Status status;
+
+    @ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.DETACH,CascadeType.REFRESH})
+    @JoinColumn(name="modelId")
+    private Model model;
+
+    @ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.DETACH,CascadeType.REFRESH})
+    @JoinColumn(name="brandId")
+    private Brand brand;
 
     public Asset() {
     }

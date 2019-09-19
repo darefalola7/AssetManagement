@@ -2,6 +2,7 @@ package com.sprintell.assetmanagement.models;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Brand {
@@ -15,10 +16,9 @@ public class Brand {
     private LocalDate regTime;
     private int status;
 
-    @ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+    @OneToMany(mappedBy = "brand", cascade= {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH,CascadeType.REFRESH})
-    @JoinColumn(name="assetId")
-    private Asset asset;
+    private List<Asset> assets;
 
     public Brand() {
     }
@@ -63,11 +63,11 @@ public class Brand {
         this.status = status;
     }
 
-    public Asset getAsset() {
-        return asset;
+    public List<Asset> getAssets() {
+        return assets;
     }
 
-    public void setAsset(Asset asset) {
-        this.asset = asset;
+    public void setAssets(List<Asset> assets) {
+        this.assets = assets;
     }
 }
