@@ -2,6 +2,7 @@ package com.sprintell.assetmanagement.models;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class AssetCheckedOut {
@@ -9,6 +10,16 @@ public class AssetCheckedOut {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long assetCheckedOutId;
+
+
+    private LocalDateTime checkOutTime;
+    private LocalDate dueDate;
+    private Double fine;
+    private LocalDate regTime;
+    private LocalDate reserveTime;
+    private LocalDateTime returnTime;
+    private String status;
+    private String description;
 
     @OneToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH,CascadeType.REFRESH})
@@ -20,8 +31,8 @@ public class AssetCheckedOut {
     @JoinColumn(name="personnelNumber")
     private Personnel personnel;
 
-    private String description;
-    private LocalDate dueDate;
+
+
 
     public AssetCheckedOut() {
     }

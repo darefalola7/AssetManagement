@@ -1,9 +1,6 @@
 package com.sprintell.assetmanagement.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -16,6 +13,11 @@ public class AssetHistory {
     private LocalDateTime timestamp;
     private String description;
     private String notes;
+
+    @ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.DETACH,CascadeType.REFRESH})
+    @JoinColumn(name="assetId")
+    private Asset asset;
 
     public AssetHistory() {
     }

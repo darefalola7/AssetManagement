@@ -1,6 +1,7 @@
 package com.sprintell.assetmanagement.models;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -10,9 +11,11 @@ public class Vendor {
     private Long vendorId;
 
     private String vendorNumber;
-    private String vendorName;
+    private String name;
     private String email;
     private String phone;
+    private String mobile;
+    private LocalDate regTime;
     private String contactName;
     private String website;
     private String addressOne;
@@ -22,13 +25,9 @@ public class Vendor {
     private String postalCode;
     private String country;
 
-    @OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name="vendorId")
-    private List<VendorAsset> vendorAssets;
-
-    @OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name="vendorId")
-    private List<VendorNote> vendorNotes;
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.DETACH, CascadeType.REFRESH})
+    private Asset asset;
 
     public Vendor() {
     }
@@ -49,12 +48,12 @@ public class Vendor {
         this.vendorNumber = vendorNumber;
     }
 
-    public String getVendorName() {
-        return vendorName;
+    public String getName() {
+        return name;
     }
 
-    public void setVendorName(String vendorName) {
-        this.vendorName = vendorName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -71,6 +70,22 @@ public class Vendor {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public LocalDate getRegTime() {
+        return regTime;
+    }
+
+    public void setRegTime(LocalDate regTime) {
+        this.regTime = regTime;
     }
 
     public String getContactName() {
@@ -137,19 +152,11 @@ public class Vendor {
         this.country = country;
     }
 
-    public List<VendorAsset> getVendorAssets() {
-        return vendorAssets;
+    public Asset getAsset() {
+        return asset;
     }
 
-    public void setVendorAssets(List<VendorAsset> vendorAssets) {
-        this.vendorAssets = vendorAssets;
-    }
-
-    public List<VendorNote> getVendorNotes() {
-        return vendorNotes;
-    }
-
-    public void setVendorNotes(List<VendorNote> vendorNotes) {
-        this.vendorNotes = vendorNotes;
+    public void setAsset(Asset asset) {
+        this.asset = asset;
     }
 }

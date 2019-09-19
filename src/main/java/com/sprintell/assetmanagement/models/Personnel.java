@@ -1,6 +1,7 @@
 package com.sprintell.assetmanagement.models;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -16,6 +17,8 @@ public class Personnel {
     private String email;
     private String title;
     private String status;
+    private LocalDate regTime;
+    private String address;
 
     @OneToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH,CascadeType.REFRESH})
@@ -25,10 +28,6 @@ public class Personnel {
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name="personnelId")
     private List<PersonnelHistory> personnelHistories;
-
-    @OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name="personnelId")
-    private List<PersonnelAssetCheckedOut> personnelAssetCheckedOutList;
 
     public Personnel() {
     }
@@ -113,11 +112,4 @@ public class Personnel {
         this.personnelHistories = personnelHistories;
     }
 
-    public List<PersonnelAssetCheckedOut> getPersonnelAssetCheckedOutList() {
-        return personnelAssetCheckedOutList;
-    }
-
-    public void setPersonnelAssetCheckedOutList(List<PersonnelAssetCheckedOut> personnelAssetCheckedOutList) {
-        this.personnelAssetCheckedOutList = personnelAssetCheckedOutList;
-    }
 }

@@ -1,9 +1,6 @@
 package com.sprintell.assetmanagement.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -15,6 +12,11 @@ public class AssetNote {
 
     @Size(max = 1000)
     private String notes;
+
+    @ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.DETACH,CascadeType.REFRESH})
+    @JoinColumn(name="assetId")
+    private Asset asset;
 
     public AssetNote() {
     }

@@ -35,115 +35,54 @@ public class Asset {
     private Vendor vendor;
 
     //child classes
-    @OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name="assetId")
+    @OneToMany(mappedBy="asset",
+            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH,CascadeType.REFRESH})
     private List<AssetHistory> assetHistories;
 
-    @OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name="assetId")
+    @OneToMany(mappedBy="asset",
+            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH,CascadeType.REFRESH})
     private List<AssetNote> assetNotes;
 
-    @OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name="assetId")
+    @OneToMany(mappedBy="asset",
+            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH,CascadeType.REFRESH})
+    private List<Location> locations;
 
-    private List<AssetService> assetServices;
+    @OneToMany(mappedBy="asset",
+            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH,CascadeType.REFRESH})
+    private List<Department> departments;
+
+    @OneToMany(mappedBy="asset",
+            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH,CascadeType.REFRESH})
+    private List<Manufacturer> manufacturers;
+
+    @OneToMany(mappedBy="asset",
+            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH,CascadeType.REFRESH})
+    private List<Status> statuses;
+
+    @OneToMany(mappedBy="asset",
+            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH,CascadeType.REFRESH})
+    private List<Model> models;
+
+    @OneToMany(mappedBy="asset",
+            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH,CascadeType.REFRESH})
+    private List<Brand> brands;
+
+    @OneToMany(mappedBy="asset",
+            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH,CascadeType.REFRESH})
+    private List<Maintenance> maintenances;
 
     public Asset() {
     }
 
-    public Long getAssetId() {
-        return assetId;
-    }
 
-    public void setAssetId(Long assetId) {
-        this.assetId = assetId;
-    }
 
-    public String getAssetNumber() {
-        return assetNumber;
-    }
-
-    public void setAssetNumber(String assetNumber) {
-        this.assetNumber = assetNumber;
-    }
-
-    public String getAssetDescription() {
-        return assetDescription;
-    }
-
-    public void setAssetDescription(String description) {
-        this.assetDescription = description;
-    }
-
-    public AssetCategory getAssetCategory() {
-        return assetCategory;
-    }
-
-    public void setAssetCategory(AssetCategory assetCategory) {
-        this.assetCategory = assetCategory;
-    }
-
-    public String getManufacturer() {
-        return manufacturer;
-    }
-
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public AssetGeneral getAssetGeneral() {
-        return assetGeneral;
-    }
-
-    public void setAssetGeneral(AssetGeneral assetGeneral) {
-        this.assetGeneral = assetGeneral;
-    }
-
-    public AssetFinance getAssetFinance() {
-        return assetFinance;
-    }
-
-    public void setAssetFinance(AssetFinance assetFinance) {
-        this.assetFinance = assetFinance;
-    }
-
-    public Vendor getVendor() {
-        return vendor;
-    }
-
-    public void setVendor(Vendor vendor) {
-        this.vendor = vendor;
-    }
-
-    public List<AssetHistory> getAssetHistories() {
-        return assetHistories;
-    }
-
-    public void setAssetHistories(List<AssetHistory> assetHistories) {
-        this.assetHistories = assetHistories;
-    }
-
-    public List<AssetNote> getAssetNotes() {
-        return assetNotes;
-    }
-
-    public void setAssetNotes(List<AssetNote> assetNotes) {
-        this.assetNotes = assetNotes;
-    }
-
-    public List<AssetService> getAssetServices() {
-        return assetServices;
-    }
-
-    public void setAssetServices(List<AssetService> assetServices) {
-        this.assetServices = assetServices;
-    }
-}
+   }
