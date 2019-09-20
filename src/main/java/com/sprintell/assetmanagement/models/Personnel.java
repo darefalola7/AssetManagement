@@ -19,15 +19,7 @@ public class Personnel {
     private String status;
     private LocalDate regTime;
     private String address;
-
-    @ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE,
-            CascadeType.DETACH,CascadeType.REFRESH})
-    @JoinTable(
-            name="personnel_group",
-            joinColumns=@JoinColumn(name="personnelId"),
-            inverseJoinColumns=@JoinColumn(name="groupId")
-    )
-    private List<Group> groups;
+    private String personnelGroup;
 
     @OneToMany(mappedBy = "personnel", cascade=CascadeType.ALL)
     private List<PersonnelHistory> personnelHistories;
@@ -120,12 +112,12 @@ public class Personnel {
         this.address = address;
     }
 
-    public List<Group> getGroups() {
-        return groups;
+    public String getPersonnelGroup() {
+        return personnelGroup;
     }
 
-    public void setGroups(List<Group> groups) {
-        this.groups = groups;
+    public void setPersonnelGroup(String personnelGroup) {
+        this.personnelGroup = personnelGroup;
     }
 
     public List<AssetCheckedOut> getCheckedOuts() {
