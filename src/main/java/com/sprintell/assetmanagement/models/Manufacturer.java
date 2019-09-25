@@ -15,7 +15,7 @@ public class Manufacturer {
     private String description;
     private String name;
     private LocalDate regTime;
-    private int status;
+    private Boolean status;
 
     @OneToMany(mappedBy = "manufacturer", cascade= {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH,CascadeType.REFRESH})
@@ -57,11 +57,11 @@ public class Manufacturer {
         this.regTime = regTime;
     }
 
-    public int getStatus() {
+    public Boolean getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 

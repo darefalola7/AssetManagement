@@ -24,12 +24,21 @@ public class Vendor {
     private String state;
     private String postalCode;
     private String country;
+    private Boolean status;
 
     @OneToMany(mappedBy = "vendor", cascade = {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH, CascadeType.REFRESH})
     private List<Asset> assets;
 
     public Vendor() {
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 
     public Long getVendorId() {

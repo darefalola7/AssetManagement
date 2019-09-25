@@ -16,7 +16,7 @@ public class Personnel {
     private String phone;
     private String email;
     private String title;
-    private String status;
+    private Boolean status;
     private LocalDate regTime;
     private String address;
     private String personnelGroup;
@@ -88,11 +88,11 @@ public class Personnel {
         this.title = title;
     }
 
-    public String getStatus() {
+    public Boolean getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 

@@ -1,6 +1,7 @@
 package com.sprintell.assetmanagement.models;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -13,8 +14,8 @@ public class Status {
 
     private String description;
     private String name;
-    private String regTime;
-    private int status;
+    private LocalDate regTime;
+    private Boolean status;
 
     @OneToMany(mappedBy = "status", cascade= {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH,CascadeType.REFRESH})
@@ -47,19 +48,19 @@ public class Status {
         this.name = name;
     }
 
-    public String getRegTime() {
+    public LocalDate getRegTime() {
         return regTime;
     }
 
-    public void setRegTime(String regTime) {
+    public void setRegTime(LocalDate regTime) {
         this.regTime = regTime;
     }
 
-    public int getStatus() {
+    public Boolean getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 

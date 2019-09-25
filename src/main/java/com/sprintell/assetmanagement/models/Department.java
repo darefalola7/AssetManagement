@@ -15,7 +15,7 @@ public class Department {
     private String description;
     private String name;
     private LocalDate regTime;
-    private int status;
+    private Boolean status;
 
     @OneToMany(mappedBy = "department", cascade= {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH,CascadeType.REFRESH})
@@ -56,11 +56,11 @@ public class Department {
         this.regTime = regTime;
     }
 
-    public int getStatus() {
+    public Boolean getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 
