@@ -41,9 +41,9 @@ public class PersonnelService {
         return personnelRepository.findById(id);
     }
 
-    public List<Personnel> getSomePersonnels(List<Long> ids) {
+    /*public List<Personnel> getSomePersonnels(List<Long> ids) {
         return personnelRepository.findByIdIn(ids);
-    }
+    }*/
 
     public List<Personnel> getPersonnels(int page, int size){
         List<Personnel> personnels = personnelRepository.findAll();

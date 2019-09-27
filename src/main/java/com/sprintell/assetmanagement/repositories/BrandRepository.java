@@ -12,7 +12,7 @@ import java.util.Optional;
 @Repository
 public interface BrandRepository extends JpaRepository<Brand, Long> {
 
-    List<Brand> findByIdIn(List<Long> ids);
+    //List<Brand> findByIdIn(List<Long> ids);
 
     Optional<Brand> findById(Long id);
 

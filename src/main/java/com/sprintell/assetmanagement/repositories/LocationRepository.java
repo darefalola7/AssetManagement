@@ -12,7 +12,7 @@ import java.util.Optional;
 @Repository
 public interface LocationRepository extends JpaRepository<Location, Long> {
 
-    List<Location> findByIdIn(List<Long> ids);
+    //List<Location> findByIdIn(List<Long> ids);
 
     Optional<Location> findById(Long id);
 

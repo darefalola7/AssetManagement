@@ -36,14 +36,13 @@ public class VendorService {
     }
 
     // Get Vendor Data
-
     public Optional<Vendor> getVendor(Long id){
         return vendorRepository.findById(id);
     }
 
-    public List<Vendor> getSomeVendors(List<Long> ids) {
+    /*public List<Vendor> getSomeVendors(List<Long> ids) {
         return vendorRepository.findByIdIn(ids);
-    }
+    }*/
 
     public List<Vendor> getVendors(int page, int size){
         List<Vendor> vendors = vendorRepository.findAll();

@@ -41,9 +41,9 @@ public class BrandService {
         return brandRepository.findById(id);
     }
 
-    public List<Brand> getSomeBrands(List<Long> ids) {
+    /*public List<Brand> getSomeBrands(List<Long> ids) {
         return brandRepository.findByIdIn(ids);
-    }
+    }*/
 
     public List<Brand> getBrands(int page, int size){
         List<Brand> brands = brandRepository.findAll();

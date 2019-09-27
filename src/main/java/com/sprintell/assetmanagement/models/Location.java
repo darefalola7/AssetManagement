@@ -24,6 +24,11 @@ public class Location {
     public Location() {
     }
 
+    public Location(String description, String name) {
+        this.description = description;
+        this.name = name;
+    }
+
     public Long getLocationId() {
         return locationId;
     }

@@ -12,7 +12,7 @@ import java.util.Optional;
 @Repository
 public interface StatusRepository extends JpaRepository<Status, Long> {
 
-    List<Status> findByIdIn(List<Long> ids);
+    //List<Status> findByIdIn(List<Long> ids);
 
     Optional<Status> findById(Long id);
 

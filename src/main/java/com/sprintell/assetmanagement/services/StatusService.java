@@ -41,10 +41,10 @@ public class StatusService {
         return statusRepository.findById(id);
     }
 
-    public List<Status> getSomeStatuses(List<Long> ids) {
+    /*public List<Status> getSomeStatuses(List<Long> ids) {
         return statusRepository.findByIdIn(ids);
     }
-
+*/
     public List<Status> getStatuses(int page, int size){
         List<Status> statuses = statusRepository.findAll();
 

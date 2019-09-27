@@ -12,7 +12,7 @@ import java.util.Optional;
 @Repository
 public interface DepartmentRepository extends JpaRepository<Department, Long> {
 
-    List<Department> findByIdIn(List<Long> ids);
+//    List<Department> findByIdIn(List<Long> ids);
 
     Optional<Department> findById(Long id);
 

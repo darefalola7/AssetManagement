@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,11 +42,11 @@ public class LocationService {
         return locationRepository.findById(id);
     }
 
-    public List<Location> getSomeLocations(List<Long> ids) {
+    /* public List<Location> getSomeLocations(List<Long> ids) {
         return locationRepository.findByIdIn(ids);
-    }
+    }*/
 
-    public List<Location> getLocations(int page, int size) {
+    public List<Location> getLocations() {
 
         List<Location> locations = locationRepository.findAll();
 
@@ -55,7 +56,7 @@ public class LocationService {
 
     // Search / Delete / Check Existence of Locations Data
 
-    public List<Location> search(int page, int size, String searchParam) {
+    public List<Location> search(String searchParam) {
 
         List<Location> locations = locationRepository.findBySearchParameter(searchParam);
 
@@ -63,8 +64,12 @@ public class LocationService {
     }
 
 
-    public void deleteBookLocations(Long id) {
+    public void deleteLocation(Long id) {
         locationRepository.deleteById(id);
+    }
+
+    public void deleteAllLocations(){
+        locationRepository.deleteAll();
     }
 
 
@@ -77,4 +82,30 @@ public class LocationService {
         long count = locationRepository.count();
         return count;
     }
+
+    public Boolean updateLocation(Location incomingLoc, Long id){
+        Optional<Location> location = getLocation(id);
+
+        if (location.isPresent()){
+            Location loc = location.get();
+            loc.setName(incomingLoc.getName());
+            loc.setDescription(incomingLoc.getDescription());
+            loc.setStatus(true);
+            loc.setRegTime(LocalDate.now());
+            locationRepository.save(loc);
+            return true;
+        }
+        return false;
+    }
+
+    public void populateLocations(){
+        List<Location> locations = new ArrayList<>();
+        locations.add(new Location("Assets in Europe", "London"));
+        locations.add(new Location("Assets in West Africa", "Lagos"));
+        locations.add(new Location("Assets in South Africa", "South Africa"));
+        locations.add(new Location("Assets in America", "San francisco"));
+
+        addLocations(locations);
+    }
+
 }

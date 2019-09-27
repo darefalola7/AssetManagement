@@ -41,9 +41,9 @@ public class ManufacturerService {
         return manufacturerRepository.findById(id);
     }
 
-    public List<Manufacturer> getSomeManufacturers(List<Long> ids) {
+    /*public List<Manufacturer> getSomeManufacturers(List<Long> ids) {
         return manufacturerRepository.findByIdIn(ids);
-    }
+    }*/
 
     public List<Manufacturer> getManufacturers(int page, int size){
         List<Manufacturer> manufacturers = manufacturerRepository.findAll();

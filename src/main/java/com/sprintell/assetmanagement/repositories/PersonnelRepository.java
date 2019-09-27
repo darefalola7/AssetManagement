@@ -11,11 +11,11 @@ import java.util.Optional;
 
 @Repository
 public interface PersonnelRepository extends JpaRepository<Personnel, Long> {
-    List<Personnel> findByIdIn(List<Long> ids);
+    //List<Personnel> findByIdIn(List<Long> ids);
 
     Optional<Personnel> findById(Long id);
 
-    @Query(value = "Select persnel from Personnel persnel WHERE lower( CONCAT(persnel.name, persnel.description) ) LIKE lower(CONCAT('%',:search,'%')) ")
+    @Query(value = "Select persnel from Personnel persnel WHERE lower( CONCAT(persnel.firstname, persnel.lastname) ) LIKE lower(CONCAT('%',:search,'%')) ")
     List<Personnel> findBySearchParameter(@Param("search") String search);
 
 

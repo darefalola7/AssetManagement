@@ -12,11 +12,11 @@ import java.util.Optional;
 @Repository
 public interface VendorRepository extends JpaRepository<Vendor, Long> {
 
-    List<Vendor> findByIdIn(List<Long> ids);
+    //List<Vendor> findByIdIn(List<Long> ids);
 
     Optional<Vendor> findById(Long id);
 
-    @Query(value = "Select vendor from Vendor vendor WHERE lower( CONCAT(vendor.name, vendor.description) ) LIKE lower(CONCAT('%',:search,'%')) ")
+    @Query(value = "Select vendor from Vendor vendor WHERE lower( vendor.name ) LIKE lower(CONCAT('%',:search,'%')) ")
     List<Vendor> findBySearchParameter(@Param("search") String search);
 
 

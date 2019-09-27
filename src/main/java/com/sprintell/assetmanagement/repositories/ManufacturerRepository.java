@@ -12,7 +12,7 @@ import java.util.Optional;
 @Repository
 public interface ManufacturerRepository extends JpaRepository<Manufacturer, Long> {
 
-    List<Manufacturer> findByIdIn(List<Long> ids);
+    //List<Manufacturer> findByIdIn(List<Long> ids);
 
     Optional<Manufacturer> findById(Long id);
 
