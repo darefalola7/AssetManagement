@@ -69,14 +69,14 @@ public class LocationController {
 
     // ------------------- Update a Location ------------------------------------------------
     @PutMapping("/location/{id}")
-    public ResponseEntity<?> updateUser(@PathVariable("id") Long id, @RequestBody Location location) {
+    public ResponseEntity<?> updateLocation(@PathVariable("id") Long id, @RequestBody Location location) {
         logger.info("Updating Location with id {}", id);
 
         Boolean update = locationService.updateLocation(location, id);
 
         if (update == false) {
             logger.error("Unable to update. Location with id {} not found.", id);
-            return new ResponseEntity(new CustomErrorType("Unable to upate. User with id " + id + " not found."),
+            return new ResponseEntity(new CustomErrorType("Unable to upate. Location with id " + id + " not found."),
                     HttpStatus.NOT_FOUND);
         }
 
@@ -86,7 +86,7 @@ public class LocationController {
 
     // ------------------- Delete a Location-----------------------------------------
     @DeleteMapping("location/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable("id") Long id) {
+    public ResponseEntity<?> deleteLocation(@PathVariable("id") Long id) {
         logger.info("Fetching & Deleting Location with id {}", id);
 
         Optional<Location> loc = locationService.getLocation(id);
@@ -101,7 +101,7 @@ public class LocationController {
 
     // ------------------- Delete All Locations-----------------------------
     @DeleteMapping("/locations")
-    public ResponseEntity<Location> deleteAllUsers() {
+    public ResponseEntity<Location> deleteAllLocations() {
         logger.info("Deleting All Locations");
 
         locationService.deleteAllLocations();

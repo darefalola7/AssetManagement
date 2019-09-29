@@ -23,6 +23,11 @@ public class Brand {
     public Brand() {
     }
 
+    public Brand(String name, String description) {
+        this.description = description;
+        this.name = name;
+    }
+
     public Long getBrandId() {
         return brandId;
     }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,7 +46,7 @@ public class BrandService {
         return brandRepository.findByIdIn(ids);
     }*/
 
-    public List<Brand> getBrands(int page, int size){
+    public List<Brand> getBrands(){
         List<Brand> brands = brandRepository.findAll();
 
         return brands;
@@ -65,6 +66,11 @@ public class BrandService {
     }
 
 
+    public void deleteAllBrands(){
+        brandRepository.deleteAll();
+    }
+
+
     public boolean checkExistence(Long id) {
 
         return brandRepository.existsById(id);
@@ -73,6 +79,33 @@ public class BrandService {
     public long countRecord() {
         long count = brandRepository.count();
         return count;
+    }
+
+    public Boolean updateBrand(Brand incomingBrand, Long id) {
+        Optional<Brand> optbrand = getBrand(id);
+
+        if (optbrand.isPresent()){
+            Brand brand= optbrand.get();
+            brand.setName(incomingBrand.getName());
+            brand.setDescription(incomingBrand.getDescription());
+            brand.setStatus(true);
+            brand.setRegTime(LocalDate.now());
+            brandRepository.save(brand);
+            return true;
+        }
+        return false;
+
+    }
+
+    public void populateBrands(){
+        List<Brand> brands = new ArrayList<>();
+
+        brands.add(new Brand("Dell", "Dell Brands"));
+        brands.add(new Brand("Fujitsu", "Futjitsu Brands"));
+        brands.add(new Brand("Phillips", "Phillips Brands"));
+        brands.add(new Brand("Apple", "Apple Brands"));
+
+        addBrands(brands);
     }
 
 }

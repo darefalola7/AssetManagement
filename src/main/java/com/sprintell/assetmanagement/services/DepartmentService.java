@@ -45,7 +45,7 @@ public class DepartmentService {
         return departmentRepository.findByIdIn(ids);
     }*/
 
-    public List<Department> getDepartments(int page, int size){
+    public List<Department> getDepartments(){
         List<Department> departments = departmentRepository.findAll();
 
         return departments;
@@ -64,6 +64,10 @@ public class DepartmentService {
         departmentRepository.deleteById(id);
     }
 
+    public void deleteAllDepartments(){
+        departmentRepository.deleteAll();
+    }
+
 
     public boolean checkExistence(Long id) {
 
@@ -75,5 +79,20 @@ public class DepartmentService {
         return count;
     }
 
+    public Boolean updateDepartment(Department incoming_department, Long id) {
+
+        Optional<Department> opt_department = getDepartment(id);
+
+        if (opt_department.isPresent()){
+            Department loc = opt_department.get();
+            loc.setName(incoming_department.getName());
+            loc.setDescription(incoming_department.getDescription());
+            loc.setStatus(true);
+            loc.setRegTime(LocalDate.now());
+            departmentRepository.save(loc);
+            return true;
+        }
+        return false;
+    }
 }
 

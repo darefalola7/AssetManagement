@@ -45,7 +45,7 @@ public class ManufacturerService {
         return manufacturerRepository.findByIdIn(ids);
     }*/
 
-    public List<Manufacturer> getManufacturers(int page, int size){
+    public List<Manufacturer> getManufacturers(){
         List<Manufacturer> manufacturers = manufacturerRepository.findAll();
 
         return manufacturers;
@@ -75,4 +75,25 @@ public class ManufacturerService {
         return count;
     }
 
+    public Boolean updateManufacturer(Manufacturer incoming_manufacturer, Long id) {
+
+        Optional<Manufacturer> optmanuf = getManufacturer(id);
+
+        if (optmanuf.isPresent()){
+            Manufacturer manuf= optmanuf.get();
+            manuf.setName(incoming_manufacturer.getName());
+            manuf.setDescription(incoming_manufacturer.getDescription());
+            manuf.setStatus(true);
+            manuf.setRegTime(LocalDate.now());
+            manufacturerRepository.save(manuf);
+            return true;
+        }
+        return false;
+
+
+    }
+
+    public void deleteAllManufacturers() {
+        manufacturerRepository.deleteAll();
+    }
 }
