@@ -14,6 +14,11 @@ public interface VendorRepository extends JpaRepository<Vendor, Long> {
 
     //List<Vendor> findByIdIn(List<Long> ids);
 
+
+    @Query(value="SELECT vendor_id FROM Vendor WHERE vendor_id = (SELECT MAX(vendor_id) FROM Vendor)",
+            nativeQuery = true)
+    Long getMaxId();
+
     Optional<Vendor> findById(Long id);
 
     @Query(value = "Select vendor from Vendor vendor WHERE lower( vendor.name ) LIKE lower(CONCAT('%',:search,'%')) ")

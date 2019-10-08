@@ -14,9 +14,21 @@ public class VendorService {
 
     private LocalDate timeNw = LocalDate.now();
     private Boolean status = true;
+    private static Long vendorCount;
+
+    VendorRepository vendorRepository;
 
     @Autowired
-    VendorRepository vendorRepository;
+    public VendorService(VendorRepository vendorRepository) {
+        this.vendorRepository = vendorRepository;
+        vendorCount = vendorRepository.getMaxId();
+    }
+
+    public  void deleteAllVendors() {
+
+        vendorRepository.deleteAll();
+
+    }
 
     //Add Vendor data
     public Vendor addVendor(Vendor vendor){
@@ -44,7 +56,7 @@ public class VendorService {
         return vendorRepository.findByIdIn(ids);
     }*/
 
-    public List<Vendor> getVendors(int page, int size){
+    public List<Vendor> getVendors(){
         List<Vendor> vendors = vendorRepository.findAll();
 
         return vendors;
@@ -72,6 +84,50 @@ public class VendorService {
     public long countRecord() {
         long count = vendorRepository.count();
         return count;
+    }
+
+    public Boolean updateVendor(Vendor incomingVendor, Long id) {
+        Optional<Vendor> opt_vendor = getVendor(id);
+
+        if (opt_vendor.isPresent()){
+            Vendor vendor = opt_vendor.get();
+            vendor.setVendorNumber(incomingVendor.getVendorNumber());
+            vendor.setName(incomingVendor.getName());
+            vendor.setEmail(incomingVendor.getEmail());
+            vendor.setPhone(incomingVendor.getPhone());
+            vendor.setMobile(incomingVendor.getMobile());
+            vendor.setContactName(incomingVendor.getContactName());
+            vendor.setWebsite(incomingVendor.getWebsite());
+            vendor.setAddressOne(incomingVendor.getAddressOne());
+            vendor.setAddressTwo(incomingVendor.getAddressTwo());
+            vendor.setCity(incomingVendor.getCity());
+            vendor.setState(incomingVendor.getState());
+            vendor.setPostalCode(incomingVendor.getPostalCode());
+            vendor.setCountry(incomingVendor.getCountry());
+            vendor.setStatus(true);
+            vendor.setRegTime(LocalDate.now());
+
+            vendorRepository.save(vendor);
+            return true;
+        }
+
+        return false;
+    }
+
+
+    
+
+    public String getVendorNumber(){
+
+        vendorCount = (vendorCount == null ? 1l : vendorCount);
+
+        String vendorNumber;
+        String formattedStr = String.format("%07d", vendorCount);
+        vendorNumber = "VND" + formattedStr;
+
+        vendorCount = vendorCount + 1l;
+
+        return vendorNumber;
     }
 
 }

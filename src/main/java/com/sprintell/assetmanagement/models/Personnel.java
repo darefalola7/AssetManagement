@@ -6,6 +6,7 @@ import java.util.List;
 
 @Entity
 public class Personnel {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long personnelId;
@@ -21,6 +22,8 @@ public class Personnel {
     private String address;
     private String personnelGroup;
 
+
+
     @OneToMany(mappedBy = "personnel", cascade=CascadeType.ALL)
     private List<PersonnelHistory> personnelHistories;
 
@@ -31,6 +34,20 @@ public class Personnel {
 
     public Personnel() {
     }
+
+    //
+    public Personnel(String personnelNumber, String firstname, String lastname, String phone,
+                     String email, String title, String address, String personnelGroup) {
+        this.personnelNumber = personnelNumber;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.phone = phone;
+        this.email = email;
+        this.title = title;
+        this.address = address;
+        this.personnelGroup = personnelGroup;
+    }
+
 
     public Long getPersonnelId() {
         return personnelId;

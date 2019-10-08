@@ -9,7 +9,7 @@ public class Status {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long locationId;
+    private Long statusId;
 
 
     private String description;
@@ -24,12 +24,12 @@ public class Status {
     public Status() {
     }
 
-    public Long getLocationId() {
-        return locationId;
+    public Long getStatusId() {
+        return statusId;
     }
 
-    public void setLocationId(Long locationId) {
-        this.locationId = locationId;
+    public void setStatusId(Long statusId) {
+        this.statusId = statusId;
     }
 
     public String getDescription() {

@@ -33,6 +33,24 @@ public class Vendor {
     public Vendor() {
     }
 
+    public Vendor(String vendorNumber, String name, String email, String phone, String mobile, String contactName,
+                  String website, String addressOne, String addressTwo, String city, String state,
+                  String postalCode, String country) {
+        this.vendorNumber = vendorNumber;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.mobile = mobile;
+        this.contactName = contactName;
+        this.website = website;
+        this.addressOne = addressOne;
+        this.addressTwo = addressTwo;
+        this.city = city;
+        this.state = state;
+        this.postalCode = postalCode;
+        this.country = country;
+    }
+
     public Boolean getStatus() {
         return status;
     }

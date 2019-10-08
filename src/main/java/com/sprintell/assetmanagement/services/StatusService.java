@@ -18,6 +18,23 @@ public class StatusService {
     @Autowired
     StatusRepository statusRepository;
 
+    public Boolean updateStatus(Status incomingStatus, Long id) {
+
+        Optional<Status> optstatus = getStatus(id);
+
+        if (optstatus.isPresent()){
+            Status status= optstatus.get();
+            status.setName(incomingStatus.getName());
+            status.setDescription(incomingStatus.getDescription());
+            status.setStatus(true);
+            status.setRegTime(LocalDate.now());
+            statusRepository.save(status);
+            return true;
+        }
+        return false;
+
+    }
+
     //Add Status data
     public Status addStatus(Status status){
         status.setRegTime(timeNw);
@@ -45,7 +62,7 @@ public class StatusService {
         return statusRepository.findByIdIn(ids);
     }
 */
-    public List<Status> getStatuses(int page, int size){
+    public List<Status> getStatuses(){
         List<Status> statuses = statusRepository.findAll();
 
         return statuses;
@@ -75,4 +92,8 @@ public class StatusService {
         return count;
     }
 
+    public void deleteAllStatuses() {
+
+        statusRepository.deleteAll();
+    }
 }

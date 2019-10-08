@@ -13,6 +13,10 @@ import java.util.Optional;
 public interface PersonnelRepository extends JpaRepository<Personnel, Long> {
     //List<Personnel> findByIdIn(List<Long> ids);
 
+    @Query(value="SELECT personnel_id FROM Personnel WHERE personnel_id = (SELECT MAX(personnel_id) FROM Personnel)",
+            nativeQuery = true)
+    Long getMaxId();
+
     Optional<Personnel> findById(Long id);
 
     @Query(value = "Select persnel from Personnel persnel WHERE lower( CONCAT(persnel.firstname, persnel.lastname) ) LIKE lower(CONCAT('%',:search,'%')) ")
