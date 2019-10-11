@@ -1,6 +1,7 @@
 package com.sprintell.assetmanagement.models;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -20,8 +21,15 @@ public class Category {
 
     private String name;
     private String description;
+    private LocalDate regTime;
+    private Boolean status;
 
     public Category() {
+    }
+
+    public Category(String name, String description) {
+        this.name = name;
+        this.description = description;
     }
 
     public Long getCategoryId() {
@@ -46,5 +54,21 @@ public class Category {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public LocalDate getRegTime() {
+        return regTime;
+    }
+
+    public void setRegTime(LocalDate regTime) {
+        this.regTime = regTime;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 }
